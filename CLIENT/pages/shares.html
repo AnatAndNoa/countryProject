@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>שיתופים על מדינות</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script src="../scripts/ajaxCalls.js"></script>
+
+    <link href="../CSS/shares.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="top-area">
+
+        <button id="menuButton"
+                class="menu-button"
+                aria-label="פתיחת תפריט">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <div class="page-title">
+            שיתופים
+        </div>
+
+    </div>
+
+    <div id="menuOverlay"
+         class="menu-overlay">
+    </div>
+
+    <aside id="sideMenu"
+           class="side-menu">
+
+        <div class="menu-header">
+
+            <h2>תפריט</h2>
+
+            <button id="closeMenuButton"
+                    class="close-menu-button">
+                ✕
+            </button>
+
+        </div>
+
+        <nav class="menu-content">
+
+            <a href="index.html"
+               class="menu-link">
+                דף הבית
+            </a>
+
+            <a href="countries.html"
+               class="menu-link">
+                צפייה במדינות
+            </a>
+
+            <a href="myMap.html"
+               class="menu-link">
+                מפת העולם שלי
+            </a>
+
+            <a href="shares.html"
+               class="menu-link">
+                המלצות ושיתופים
+            </a>
+
+            <a href="quizzes.html"
+               class="menu-link">
+                חידונים
+            </a>
+
+            <div id="adminMenu"
+                 class="admin-menu">
+
+                <a href="manageUsers.html"
+                   class="menu-link">
+                    ניהול משתמשים
+                </a>
+
+                <a href="siteData.html"
+                   class="menu-link">
+                    צפייה בנתונים
+                </a>
+
+            </div>
+
+            <button id="logoutButton"
+                    class="logout-button">
+                יציאה מהחשבון
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-container">
+
+        <h1 class="main-title">
+            שיתופים על מדינות
+        </h1>
+
+        <section class="search-section">
+
+            <div class="search-row">
+
+                <input type="text"
+                       id="countrySearchInput"
+                       class="country-search-input"
+                       list="countriesList"
+                       placeholder="הקלידו או בחרו מדינה..." />
+
+                <datalist id="countriesList">
+                </datalist>
+
+                <button id="searchSharesButton"
+                        class="main-button">
+                    הצגת שיתופים
+                </button>
+
+                <button id="openAddShareButton"
+                        class="main-button">
+                    הוספת שיתוף
+                </button>
+
+            </div>
+
+            <div id="searchMessage"
+                 class="search-message">
+            </div>
+
+        </section>
+
+        <h2 id="selectedCountryTitle"
+            class="selected-country-title">
+        </h2>
+
+        <section id="sharesContainer"
+                 class="shares-container">
+        </section>
+
+    </main>
+
+    <div id="addShareOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box">
+
+            <button id="closeAddShare"
+                    class="popup-close">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                הוספת שיתוף
+            </h2>
+
+            <div id="addShareCountryName"
+                 class="popup-country-name">
+            </div>
+
+            <div class="form-group">
+
+                <label for="addShareContent">
+                    תוכן השיתוף
+                </label>
+
+                <textarea id="addShareContent"
+                          maxlength="1000"
+                          placeholder="כתבי כאן המלצה, חוויה או מידע על המדינה..."></textarea>
+
+            </div>
+
+            <div id="addShareMessage"
+                 class="popup-message">
+            </div>
+
+            <div class="popup-actions">
+
+                <button id="saveNewShareButton"
+                        class="main-button">
+                    הוספה
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="editShareOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box">
+
+            <button id="closeEditShare"
+                    class="popup-close">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                עריכת השיתוף שלי
+            </h2>
+
+            <div class="form-group">
+
+                <label for="editShareCountryName">
+                    מדינה
+                </label>
+
+                <input type="text"
+                       id="editShareCountryName"
+                       disabled />
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="editShareContent">
+                    תוכן השיתוף
+                </label>
+
+                <textarea id="editShareContent"
+                          maxlength="1000"></textarea>
+
+            </div>
+
+            <div id="editShareMessage"
+                 class="popup-message">
+            </div>
+
+            <div class="popup-actions">
+
+                <button id="saveEditedShareButton"
+                        class="main-button">
+                    שמירת שינויים
+                </button>
+
+                <button id="deleteShareButton"
+                        class="main-button delete-button">
+                    מחיקה
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../scripts/shares.js"></script>
+
+</body>
+
+</html>

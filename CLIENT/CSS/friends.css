@@ -1,0 +1,567 @@
+﻿
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --dark-blue: #0c1238;
+    --medium-blue: #1b2753;
+    --light-blue: #2c3c6f;
+    --cream: #fff8e7;
+    --cream-dark: #eee2c8;
+    --text-dark: #0c1238;
+    --error: #b34650;
+    --success: #26734d;
+}
+
+body {
+    min-height: 100vh;
+    direction: rtl;
+    font-family: Arial, sans-serif;
+    color: var(--text-dark);
+    background-image: linear-gradient( rgba(255, 248, 231, 0.08), rgba(255, 248, 231, 0.08) ), url("../images/loginBG.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+button,
+input {
+    font-family: Arial, sans-serif;
+}
+
+/* אזור עליון */
+
+.top-area {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.menu-button {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    border-radius: 16px;
+    background-color: var(--dark-blue);
+    cursor: pointer;
+    box-shadow: 0 6px 17px rgba(12, 18, 56, 0.34);
+}
+
+    .menu-button:hover {
+        background-color: var(--medium-blue);
+    }
+
+    .menu-button span {
+        width: 28px;
+        height: 3px;
+        border-radius: 5px;
+        background-color: var(--cream);
+    }
+
+.page-name {
+    color: var(--dark-blue);
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* תפריט צד שמנת */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -370px;
+    z-index: 1200;
+    width: 370px;
+    max-width: 88%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cream);
+    box-shadow: -8px 0 30px rgba(12, 18, 56, 0.28);
+    transition: right 0.35s ease;
+}
+
+    .side-menu.open {
+        right: 0;
+    }
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 27px 28px;
+    border-bottom: 1px solid #d7cfbc;
+}
+
+    .menu-header h2 {
+        color: var(--dark-blue);
+        font-size: 27px;
+    }
+
+.close-menu-button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    background-color: transparent;
+    color: var(--dark-blue);
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.menu-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 35px 30px;
+}
+
+.menu-link,
+.logout-button {
+    width: fit-content;
+    border: none;
+    background-color: transparent;
+    color: var(--dark-blue);
+    font-size: 19px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    .menu-link:hover,
+    .logout-button:hover {
+        color: var(--light-blue);
+    }
+
+.logout-button {
+    margin-top: auto;
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(12, 18, 56, 0.35);
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+    .menu-overlay.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
+/* תוכן מרכזי */
+
+.main-container {
+    width: 92%;
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 135px 0 75px;
+}
+
+.main-title {
+    margin-bottom: 15px;
+    color: var(--dark-blue);
+    font-size: 47px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.main-subtitle {
+    margin-bottom: 42px;
+    color: var(--dark-blue);
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.actions-area {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 48px;
+}
+
+.main-action-button {
+    min-width: 255px;
+    padding: 18px 28px;
+    border: none;
+    border-radius: 18px;
+    background-color: var(--dark-blue);
+    color: var(--cream);
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgba(12, 18, 56, 0.34);
+    transition: 0.2s;
+}
+
+    .main-action-button:hover {
+        background-color: var(--medium-blue);
+        transform: translateY(-4px);
+    }
+
+/* רשימת חברים */
+
+.friends-area {
+    display: none;
+}
+
+    .friends-area.show {
+        display: block;
+    }
+
+.section-title {
+    margin-bottom: 30px;
+    color: var(--dark-blue);
+    font-size: 31px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.friends-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.friend-card {
+    min-height: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    padding: 27px 22px;
+    border: none;
+    border-radius: 22px;
+    background-color: var(--dark-blue);
+    color: var(--cream);
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(12, 18, 56, 0.38);
+    transition: 0.2s;
+}
+
+    .friend-card:hover {
+        transform: translateY(-6px);
+        background-color: var(--medium-blue);
+        box-shadow: 0 13px 31px rgba(12, 18, 56, 0.46);
+    }
+
+.friend-icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--cream);
+    color: var(--dark-blue);
+    font-size: 27px;
+}
+
+.friend-name {
+    color: var(--cream);
+    font-size: 21px;
+    font-weight: 700;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.friend-email {
+    color: var(--cream-dark);
+    font-size: 16px;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* פופאפים */
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    background-color: rgba(12, 18, 56, 0.66);
+}
+
+    .popup-overlay.show {
+        display: flex;
+    }
+
+.popup-box {
+    position: relative;
+    width: 520px;
+    max-width: 96%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 38px;
+    border-radius: 24px;
+    background-color: var(--cream);
+    color: var(--dark-blue);
+    box-shadow: 0 15px 42px rgba(12, 18, 56, 0.42);
+}
+
+.large-popup {
+    width: 1050px;
+}
+
+.medium-popup {
+    width: 700px;
+}
+
+.popup-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    border: none;
+    background-color: transparent;
+    color: var(--dark-blue);
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.popup-title {
+    margin-bottom: 12px;
+    padding: 0 35px;
+    color: var(--dark-blue);
+    font-size: 31px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.popup-subtitle {
+    margin-bottom: 28px;
+    color: #555775;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* הוספת חבר */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 9px;
+        color: var(--dark-blue);
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid #8791ad;
+        border-radius: 12px;
+        background-color: #fffdf8;
+        color: var(--dark-blue);
+        font-size: 17px;
+        outline: none;
+    }
+
+        .form-group input:focus {
+            border-color: var(--dark-blue);
+        }
+
+.popup-action-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 13px;
+    background-color: var(--dark-blue);
+    color: var(--cream);
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+    .popup-action-button:hover {
+        background-color: var(--medium-blue);
+    }
+
+.form-message {
+    min-height: 23px;
+    margin: 14px 0;
+    color: var(--error);
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+}
+
+    .form-message.success {
+        color: var(--success);
+    }
+
+/* מדינות של חבר */
+
+.countries-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.country-card {
+    position: relative;
+    min-height: 190px;
+    padding: 13px;
+    border: none;
+    border-radius: 18px;
+    background-color: var(--dark-blue);
+    color: var(--cream);
+    box-shadow: 0 6px 17px rgba(12, 18, 56, 0.32);
+}
+
+    .country-card.clickable {
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .country-card.clickable:hover {
+            transform: translateY(-5px);
+            background-color: var(--medium-blue);
+        }
+
+    .country-card.not-clickable {
+        cursor: default;
+        opacity: 0.76;
+    }
+
+.country-flag {
+    width: 100%;
+    height: 105px;
+    display: block;
+    object-fit: cover;
+    border-radius: 11px;
+    background-color: white;
+}
+
+.country-name {
+    margin-top: 12px;
+    color: var(--cream);
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.share-indicator {
+    margin-top: 7px;
+    color: var(--cream-dark);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* שיתופים */
+
+.shares-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.share-card {
+    padding: 22px;
+    border-radius: 17px;
+    background-color: var(--dark-blue);
+    color: var(--cream);
+    box-shadow: 0 5px 15px rgba(12, 18, 56, 0.28);
+}
+
+.share-date {
+    margin-bottom: 11px;
+    color: var(--cream-dark);
+    font-size: 14px;
+}
+
+.share-content {
+    color: var(--cream);
+    font-size: 18px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.loading-message,
+.empty-message,
+.error-message {
+    grid-column: 1 / -1;
+    padding: 36px 20px;
+    border-radius: 17px;
+    background-color: rgba(255, 248, 231, 0.88);
+    color: var(--dark-blue);
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.error-message {
+    color: var(--error);
+}
+
+@media screen and (max-width: 900px) {
+    .friends-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .countries-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .actions-area {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-action-button {
+        width: 100%;
+        max-width: 390px;
+    }
+
+    .friends-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .countries-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .main-title {
+        font-size: 38px;
+    }
+
+    .popup-box {
+        padding: 35px 22px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .countries-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+

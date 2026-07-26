@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>צפייה בנתוני האתר</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script src="../scripts/ajaxCalls.js"></script>
+
+    <link href="../CSS/siteData.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- אזור עליון -->
+
+    <div class="top-area">
+
+        <button id="menuButton"
+                class="menu-button"
+                aria-label="פתיחת תפריט">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <div class="page-title">
+            צפייה בנתונים
+        </div>
+
+    </div>
+
+    <!-- שכבת רקע לתפריט -->
+
+    <div id="menuOverlay"
+         class="menu-overlay">
+    </div>
+
+    <!-- תפריט צד -->
+
+    <aside id="sideMenu"
+           class="side-menu">
+
+        <div class="menu-header">
+
+            <h2>תפריט</h2>
+
+            <button id="closeMenuButton"
+                    class="close-menu-button">
+                ✕
+            </button>
+
+        </div>
+
+        <nav class="menu-content">
+
+            <a href="index.html"
+               class="menu-link">
+                דף הבית
+            </a>
+
+            <a href="countries.html"
+               class="menu-link">
+                צפייה במדינות
+            </a>
+
+            <a href="myMap.html"
+               class="menu-link">
+                מפת העולם שלי
+            </a>
+
+            <a href="shares.html"
+               class="menu-link">
+                המלצות ושיתופים
+            </a>
+
+            <a href="quizzes.html"
+               class="menu-link">
+                חידונים
+            </a>
+
+            <div id="adminMenu"
+                 class="admin-menu">
+
+                <a href="manageUsers.html"
+                   class="menu-link">
+                    ניהול משתמשים
+                </a>
+
+                <a href="siteData.html"
+                   class="menu-link">
+                    צפייה בנתונים
+                </a>
+
+            </div>
+
+            <button id="logoutButton"
+                    class="logout-button">
+                יציאה מהחשבון
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <!-- תוכן הדף -->
+
+    <main class="main-container">
+
+        <h1 class="main-heading">
+            נתוני האתר היומיים
+        </h1>
+
+        <div id="todayDate"
+             class="today-date">
+        </div>
+
+        <section class="data-buttons-grid">
+
+            <button id="openSharesButton"
+                    class="data-button">
+
+                <span class="button-icon">💬</span>
+
+                <span class="button-title">
+                    שיתופים ששותפו
+                </span>
+
+                <span class="button-description">
+                    צפייה בכל השיתופים שנוספו היום
+                </span>
+
+            </button>
+
+            <button id="openLoginsButton"
+                    class="data-button">
+
+                <span class="button-icon">👤</span>
+
+                <span class="button-title">
+                    כניסות יומיות
+                </span>
+
+                <span class="button-description">
+                    צפייה במשתמשים שנכנסו היום
+                </span>
+
+            </button>
+
+            <button id="openSavedCountriesButton"
+                    class="data-button">
+
+                <span class="button-icon">📍</span>
+
+                <span class="button-title">
+                    מדינות שנשמרו
+                </span>
+
+                <span class="button-description">
+                    צפייה במדינות שנוספו היום לרשימות
+                </span>
+
+            </button>
+
+            <button id="openImportedCountriesButton"
+                    class="data-button">
+
+                <span class="button-icon">🌍</span>
+
+                <span class="button-title">
+                    מדינות שיובאו
+                </span>
+
+                <span class="button-description">
+                    צפייה במדינות שיובאו למערכת היום
+                </span>
+
+            </button>
+
+        </section>
+
+    </main>
+
+    <!-- פופאפ שיתופים -->
+
+    <div id="sharesOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box">
+
+            <button class="popup-close"
+                    data-close="sharesOverlay">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                השיתופים של היום
+            </h2>
+
+            <div class="popup-subtitle">
+                לחצו על כרטיסייה כדי לקרוא את השיתוף
+            </div>
+
+            <div id="sharesCards"
+                 class="cards-grid">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- פופאפ פרטי שיתוף -->
+
+    <div id="shareDetailsOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box medium-popup">
+
+            <button class="popup-close"
+                    data-close="shareDetailsOverlay">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                פרטי השיתוף
+            </h2>
+
+            <div class="share-information">
+
+                <div class="share-country-header">
+
+                    <img id="shareDetailsFlag"
+                         src=""
+                         alt="דגל המדינה" />
+
+                    <h3 id="shareDetailsCountry">
+                    </h3>
+
+                </div>
+
+                <div id="shareDetailsUser"
+                     class="share-user">
+                </div>
+
+                <div id="shareDetailsText"
+                     class="share-text">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- פופאפ כניסות -->
+
+    <div id="loginsOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box medium-popup">
+
+            <button class="popup-close"
+                    data-close="loginsOverlay">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                הכניסות של היום
+            </h2>
+
+            <div class="popup-subtitle">
+                רשימת כל הכניסות שבוצעו היום
+            </div>
+
+            <div id="loginsList"
+                 class="login-list">
+            </div>
+
+            <div id="totalLogins"
+                 class="total-box">
+                סך הכול כניסות היום: 0
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- פופאפ מדינות שנשמרו -->
+
+    <div id="savedCountriesOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box">
+
+            <button class="popup-close"
+                    data-close="savedCountriesOverlay">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                מדינות שנשמרו היום
+            </h2>
+
+            <div class="popup-subtitle">
+                המדינות שנוספו לרשימות המשתמשים
+            </div>
+
+            <div id="savedCountriesCards"
+                 class="cards-grid">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- פופאפ מדינות שיובאו -->
+
+    <div id="importedCountriesOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box">
+
+            <button class="popup-close"
+                    data-close="importedCountriesOverlay">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                מדינות שיובאו היום
+            </h2>
+
+            <div class="popup-subtitle">
+                לחצו על מדינה כדי לצפות בכל הפרטים
+            </div>
+
+            <div id="importedCountriesCards"
+                 class="cards-grid">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- פופאפ פרטי מדינה -->
+
+    <div id="countryDetailsOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box medium-popup">
+
+            <button class="popup-close"
+                    data-close="countryDetailsOverlay">
+                ✕
+            </button>
+
+            <h2 id="countryDetailsName"
+                class="popup-title">
+            </h2>
+
+            <img id="countryDetailsFlag"
+                 class="country-detail-flag"
+                 src=""
+                 alt="דגל המדינה" />
+
+            <div class="details-grid">
+
+                <div class="detail-item">
+                    <strong>קוד:</strong>
+                    <span id="countryDetailsCode"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>עיר בירה:</strong>
+                    <span id="countryDetailsCapital"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>אזור:</strong>
+                    <span id="countryDetailsRegion"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>שטח:</strong>
+                    <span id="countryDetailsArea"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>אוכלוסייה:</strong>
+                    <span id="countryDetailsPopulation"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>שפות:</strong>
+                    <span id="countryDetailsLanguages"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>מטבעות:</strong>
+                    <span id="countryDetailsCurrencies"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../scripts/siteData.js"></script>
+
+</body>
+
+</html>

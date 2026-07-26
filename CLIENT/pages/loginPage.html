@@ -1,0 +1,400 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>כניסה לאתר</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <link href="../CSS/login.css" rel="stylesheet" />
+    
+</head>
+
+<body>
+
+    <main class="main-container">
+
+        <div class="buttons-container">
+
+            <button id="openLoginButton"
+                    class="main-button">
+                התחברות
+            </button>
+
+            <button id="openRegisterButton"
+                    class="main-button">
+                הרשמה
+            </button>
+
+            <button id="openPreviewButton"
+                    class="main-button">
+                הצצה לאתר
+            </button>
+
+        </div>
+
+    </main>
+
+    <!-- התחברות -->
+
+    <div id="loginOverlay"
+         class="overlay">
+
+        <div class="popup">
+
+            <button type="button"
+                    class="close-button"
+                    data-close="loginOverlay">
+                ✕
+            </button>
+
+            <h2>התחברות</h2>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        אימייל
+                    </label>
+
+                    <input type="email"
+                           id="loginEmail"
+                           placeholder="example@email.com"
+                           required />
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        סיסמה
+                    </label>
+
+                    <input type="password"
+                           id="loginPassword"
+                           placeholder="הכניסו את הסיסמה"
+                           required />
+
+                </div>
+
+                <div id="loginError"
+                     class="general-error">
+                </div>
+
+                <button type="submit"
+                        id="loginSubmitButton"
+                        class="submit-button">
+                    כניסה
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- הרשמה -->
+
+    <div id="registerOverlay"
+         class="overlay">
+
+        <div class="popup">
+
+            <button type="button"
+                    class="close-button"
+                    data-close="registerOverlay">
+                ✕
+            </button>
+
+            <h2>הרשמה</h2>
+
+            <form id="registerForm">
+
+                <div class="form-group">
+
+                    <label for="registerUserName">
+                        שם משתמש
+                    </label>
+
+                    <input type="text"
+                           id="registerUserName"
+                           placeholder="בחרו שם משתמש"
+                           required />
+
+                    <div id="userNameError"
+                         class="error-message">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        אימייל
+                    </label>
+
+                    <input type="email"
+                           id="registerEmail"
+                           placeholder="example@email.com"
+                           required />
+
+                    <span class="help-text">
+                        האימייל צריך להיות בפורמט:
+                        example@email.com
+                    </span>
+
+                    <div id="emailError"
+                         class="error-message">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        סיסמה
+                    </label>
+
+                    <input type="password"
+                           id="registerPassword"
+                           placeholder="אות גדולה, אות קטנה ומספר"
+                           required />
+
+                    <span class="help-text">
+                        הסיסמה צריכה להכיל לפחות אות גדולה אחת,
+                        אות קטנה אחת ומספר אחד.
+                    </span>
+
+                    <div id="passwordError"
+                         class="error-message">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerBirthDate">
+                        תאריך לידה
+                    </label>
+
+                    <input type="date"
+                           id="registerBirthDate"
+                           required />
+
+                    <div id="birthDateError"
+                         class="error-message">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerAddress">
+                        כתובת
+                    </label>
+
+                    <input type="text"
+                           id="registerAddress"
+                           placeholder="הכניסו כתובת"
+                           required />
+
+                    <div id="addressError"
+                         class="error-message">
+                    </div>
+
+                </div>
+
+                <div id="registerGeneralError"
+                     class="general-error">
+                </div>
+
+                <button type="submit"
+                        id="registerSubmitButton"
+                        class="submit-button">
+                    הרשמה
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- הצצה לאתר -->
+
+    <div id="previewOverlay"
+         class="overlay">
+
+        <div class="popup preview-popup">
+
+            <button type="button"
+                    class="close-button"
+                    data-close="previewOverlay">
+                ✕
+            </button>
+
+            <section class="preview-hero">
+
+                <h2>
+                    ברוכים הבאים לעולם שלם של מדינות
+                </h2>
+
+                <p>
+                    כאן תוכלו לגלות מקומות חדשים,
+                    ללמוד על מדינות מכל העולם,
+                    להכיר תרבויות, שפות וערי בירה
+                    ולבחון את הידע שלכם בחידונים מהנים.
+                </p>
+
+            </section>
+
+            <section class="preview-content">
+
+                <div class="preview-intro">
+
+                    באתר מחכה לכם חוויה שמחברת בין
+                    מידע, למידה, טיולים ומשחק.
+
+                    תוכלו לעבור בין מדינות,
+                    לקרוא מידע מעניין,
+                    לשמור מקומות שתרצו לבקר בהם
+                    ולהשתתף בחידונים מהירים ומאתגרים.
+
+                </div>
+
+                <div class="features-grid">
+
+                    <article class="feature-card">
+
+                        <img src="../images/preview-countries.jpg"
+                             alt="צפייה במדינות העולם" />
+
+                        <div class="feature-card-content">
+
+                            <h3>
+                                גלו מדינות מכל העולם
+                            </h3>
+
+                            <p>
+                                צפו ברשימה רחבה של מדינות,
+                                הכירו את הדגלים שלהן
+                                וקבלו מידע על עיר הבירה,
+                                האוכלוסייה, השטח,
+                                השפות והמטבעות שלהן.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <img src="../images/preview-learning.jpg"
+                             alt="למידה על מדינות ותרבויות" />
+
+                        <div class="feature-card-content">
+
+                            <h3>
+                                למדו וקראו מידע מעניין
+                            </h3>
+
+                            <p>
+                                הרחיבו את הידע שלכם
+                                על אזורים שונים בעולם,
+                                שפות, תרבויות,
+                                ערי בירה ומאפיינים מיוחדים
+                                של כל מדינה.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <img src="../images/preview-lists.jpg"
+                             alt="שמירת מדינות ברשימות אישיות" />
+
+                        <div class="feature-card-content">
+
+                            <h3>
+                                בנו את רשימת הטיולים שלכם
+                            </h3>
+
+                            <p>
+                                שמרו מדינות שכבר ביקרתם בהן
+                                ומדינות שתרצו לבקר בהן בעתיד.
+
+                                כך תוכלו ליצור לעצמכם
+                                רשימת יעדים אישית
+                                ומסודרת.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <img src="../images/preview-quizzes.jpg"
+                             alt="חידונים על מדינות העולם" />
+
+                        <div class="feature-card-content">
+
+                            <h3>
+                                השתתפו בחידונים
+                            </h3>
+
+                            <p>
+                                בחנו את עצמכם בחידוני דגלים
+                                ובשאלות טריוויה
+                                על ערי בירה, יבשות ושפות.
+
+                                צברו נקודות,
+                                שפרו את התוצאה
+                                ונסו לשבור את השיא שלכם.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="preview-bottom">
+
+                    <h3>
+                        מוכנים להתחיל לגלות את העולם?
+                    </h3>
+
+                    <p>
+                        הירשמו לאתר,
+                        התחילו לחקור מדינות
+                        וצרו לעצמכם חוויה אישית,
+                        לימודית ומהנה.
+                    </p>
+
+                    <button type="button"
+                            id="previewRegisterButton"
+                            class="preview-register-button">
+                        הרשמה לאתר
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="../scripts/loginPage.js"></script>
+
+</body>
+
+</html>

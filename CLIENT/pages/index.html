@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>דף הבית</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    
+    <link href="../CSS/index.css" rel="stylesheet" />
+    
+</head>
+
+<body>
+
+    <div class="top-area">
+
+        <button id="menuButton"
+                class="menu-button">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <h1 id="welcomeMessage"
+            class="welcome-message">
+            שלום
+        </h1>
+
+    </div>
+
+    <div id="menuOverlay"
+         class="menu-overlay">
+    </div>
+
+    <aside id="sideMenu"
+           class="side-menu">
+
+        <div class="menu-header">
+
+            <h2>תפריט</h2>
+
+            <button id="closeMenuButton"
+                    class="close-menu-button">
+                ✕
+            </button>
+
+        </div>
+
+        <nav class="menu-content">
+
+            <button id="openUpdateUserButton"
+                    class="menu-action-button">
+                עדכון פרטים
+            </button>
+
+            <button id="openPersonalInfoButton"
+                    class="menu-action-button">
+                מידע על עצמי
+            </button>
+
+            <a href="friends.html"
+               class="menu-link">
+                החברים שלי
+            </a>
+
+            <div id="adminMenu"
+                 class="admin-menu">
+
+                <a href="management.html"
+                   class="menu-link">
+                    הרשאות מנהל
+                </a>
+
+            </div>
+
+            <button id="logoutButton"
+                    class="logout-button">
+                יציאה מהחשבון
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-container">
+
+        <section class="home-layout">
+
+            <div class="side-options">
+
+                <a href="countries.html"
+                   class="home-option">
+                    צפייה במדינות
+                </a>
+
+                <a href="myMap.html"
+                   class="home-option">
+                    מפת העולם שלי
+                </a>
+
+            </div>
+
+            <div class="center-image-container">
+
+                <img src="../images/earth-transparent.png"
+                     alt="כדור הארץ" />
+
+            </div>
+
+            <div class="side-options">
+
+                <a href="shares.html"
+                   class="home-option">
+                    המלצות ושיתופים
+                </a>
+
+                <a href="quizzes.html"
+                   class="home-option">
+                    חידונים
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <div id="updateUserOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box">
+
+            <button id="closeUpdateUser"
+                    class="popup-close">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                עדכון פרטים
+            </h2>
+
+            <form id="updateUserForm">
+
+                <div class="form-group">
+
+                    <label for="updateId">
+                        מזהה
+                    </label>
+
+                    <input type="text"
+                           id="updateId"
+                           disabled />
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="updateEmail">
+                        אימייל
+                    </label>
+
+                    <input type="email"
+                           id="updateEmail"
+                           disabled />
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="updateUserName">
+                        שם משתמש
+                    </label>
+
+                    <input type="text"
+                           id="updateUserName"
+                           required />
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="updatePassword">
+                        סיסמה
+                    </label>
+
+                    <input type="password"
+                           id="updatePassword"
+                           required />
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="updateBirthDate">
+                        תאריך לידה
+                    </label>
+
+                    <input type="date"
+                           id="updateBirthDate"
+                           required />
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="updateAddress">
+                        כתובת
+                    </label>
+
+                    <input type="text"
+                           id="updateAddress"
+                           required />
+
+                </div>
+
+                <div id="updateUserMessage"
+                     class="form-message">
+                </div>
+
+                <button type="submit"
+                        class="main-action-button">
+                    שמירת שינויים
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div id="personalInfoOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box personal-info-popup">
+
+            <button id="closePersonalInfo"
+                    class="popup-close">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                מידע על עצמי
+            </h2>
+
+            <div id="personalLoadingMessage"
+                 class="loading-message">
+                טוען את המידע...
+            </div>
+
+            <div id="personalContent"
+                 style="display:none;">
+
+                <div class="personal-summary">
+
+                    <section class="personal-section">
+
+                        <h3>היבשות המועדפות שלי</h3>
+
+                        <div id="userContinentsList"
+                             class="saved-items-list">
+                        </div>
+
+                    </section>
+
+                    <section class="personal-section">
+
+                        <h3>השפות שלי</h3>
+
+                        <div id="userLanguagesList"
+                             class="saved-items-list">
+                        </div>
+
+                    </section>
+
+                    <section class="personal-section visited-section">
+
+                        <h3>
+                            מספר המדינות שבהן ביקרתי
+                        </h3>
+
+                        <div id="visitedCountriesCount"
+                             class="visited-number">
+                            0
+                        </div>
+
+                        <a href="myMap.html"
+                           class="main-action-button"
+                           style="display:inline-block;
+                                  text-decoration:none;">
+                            צפייה במדינות שלי
+                        </a>
+
+                    </section>
+
+                </div>
+
+                <div class="personal-actions">
+
+                    <button id="toggleEditInformationButton"
+                            class="main-action-button">
+                        עדכון מידע
+                    </button>
+
+                </div>
+
+                <section id="editInformationArea"
+                         class="edit-information-area">
+
+                    <div class="edit-grid">
+
+                        <div class="edit-card">
+
+                            <h3>
+                                הוספת יבשת מועדפת
+                            </h3>
+
+                            <div class="select-and-button">
+
+                                <select id="continentSelect">
+
+                                    <option value="">
+                                        בחרי יבשת
+                                    </option>
+
+                                </select>
+
+                                <button id="addContinentButton"
+                                        class="small-button">
+                                    הוספה
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="edit-card">
+
+                            <h3>
+                                הוספת שפה
+                            </h3>
+
+                            <div class="select-and-button">
+
+                                <select id="languageSelect">
+
+                                    <option value="">
+                                        בחרי שפה
+                                    </option>
+
+                                </select>
+
+                                <button id="chooseLanguageLevelButton"
+                                        class="small-button">
+                                    הוספה
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="personalInfoMessage"
+                         class="form-message">
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="languageLevelOverlay"
+         class="popup-overlay">
+
+        <div class="level-popup-box">
+
+            <button id="closeLanguageLevel"
+                    class="popup-close">
+                ✕
+            </button>
+
+            <h3 class="level-popup-title">
+                באיזו רמה את שולטת בשפה?
+            </h3>
+
+            <div class="level-buttons">
+
+                <button class="level-button"
+                        data-level="Basic">
+                    רמה בסיסית
+                </button>
+
+                <button class="level-button"
+                        data-level="Intermediate">
+                    רמה בינונית
+                </button>
+
+                <button class="level-button"
+                        data-level="Fluent">
+                    שליטה שוטפת
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="../scripts/index.js"></script>
+    
+
+</body>
+
+</html>

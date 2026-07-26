@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>ניהול משתמשים</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script src="../scripts/ajaxCalls.js"></script>
+    <link href="../CSS/manageUsers.css" rel="stylesheet" />
+    
+</head>
+
+<body>
+
+    <div class="top-area">
+
+        <button id="menuButton"
+                class="menu-button"
+                aria-label="פתיחת תפריט">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <div class="page-title">
+            ניהול משתמשים
+        </div>
+
+    </div>
+
+    <div id="menuOverlay"
+         class="menu-overlay">
+    </div>
+
+    <aside id="sideMenu"
+           class="side-menu">
+
+        <div class="menu-header">
+
+            <h2>תפריט</h2>
+
+            <button id="closeMenuButton"
+                    class="close-menu-button">
+                ✕
+            </button>
+
+        </div>
+
+        <nav class="menu-content">
+
+            <a href="index.html"
+               class="menu-link">
+                דף הבית
+            </a>
+
+            <a href="management.html"
+               class="menu-link">
+                הרשאות מנהל
+            </a>
+
+            <a href="siteData.html"
+               class="menu-link">
+                צפייה בנתונים
+            </a>
+
+            <button id="logoutButton"
+                    class="logout-button">
+                יציאה מהחשבון
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-container">
+
+        <h1 class="main-title">
+            ניהול משתמשים
+        </h1>
+
+        <div class="top-actions">
+
+            <button id="showUsersButton"
+                    class="main-button">
+                צפייה ברשימת המשתמשים
+            </button>
+
+        </div>
+
+        <div id="pageMessage"
+             class="page-message">
+        </div>
+
+        <section id="usersGrid"
+                 class="users-grid">
+        </section>
+
+    </main>
+
+    <script src="../scripts/manageUsers.js"></script>
+
+</body>
+
+</html>

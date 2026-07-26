@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>מדינות העולם</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script src="../scripts/ajaxCalls.js"></script>
+    <link href="../CSS/countries.css" rel="stylesheet" />
+    
+</head>
+
+<body>
+
+    <div class="top-area">
+
+        <button id="menuButton"
+                class="menu-button"
+                aria-label="פתיחת תפריט">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="page-title">
+            מדינות העולם
+        </div>
+
+    </div>
+
+    <div id="menuOverlay" class="menu-overlay"></div>
+
+    <aside id="sideMenu" class="side-menu">
+
+        <div class="menu-header">
+
+            <h2>תפריט</h2>
+
+            <button id="closeMenuButton"
+                    class="close-menu-button">
+                ✕
+            </button>
+
+        </div>
+
+        <nav class="menu-content">
+
+            <a href="index.html" class="menu-link">דף הבית</a>
+            <a href="countries.html" class="menu-link">צפייה במדינות</a>
+            <a href="myMap.html" class="menu-link">מפת העולם שלי</a>
+            <a href="shares.html" class="menu-link">המלצות ושיתופים</a>
+            <a href="quizzes.html" class="menu-link">חידונים</a>
+
+            <div id="adminMenu" class="admin-menu">
+                <a href="manageUsers.html" class="menu-link">
+                    ניהול משתמשים
+                </a>
+
+                <a href="siteData.html" class="menu-link">
+                    צפייה בנתונים
+                </a>
+            </div>
+
+            <button id="logoutButton" class="logout-button">
+                יציאה מהחשבון
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-container">
+
+        <section class="countries-header">
+
+            <h1>גלו את מדינות העולם</h1>
+
+            <div class="actions-row">
+
+                <button id="showAllButton" class="top-button">
+                    צפייה בכל המדינות
+                </button>
+
+                <input type="text"
+                       id="searchInput"
+                       class="search-input"
+                       placeholder="חיפוש לפי שם..." />
+
+                <select id="regionFilter" class="filter-select">
+                    <option value="">כל האזורים</option>
+                </select>
+
+                <select id="languageFilter" class="filter-select">
+                    <option value="">כל השפות</option>
+                </select>
+
+                <select id="currencyFilter" class="filter-select">
+                    <option value="">כל המטבעות</option>
+                </select>
+
+                <select id="populationFilter" class="filter-select">
+                    <option value="">כל האוכלוסיות</option>
+                    <option value="small">עד 5 מיליון</option>
+                    <option value="medium">5 עד 50 מיליון</option>
+                    <option value="large">מעל 50 מיליון</option>
+                </select>
+
+            </div>
+
+            <div class="crud-row">
+
+                <button id="addCountryButton" class="top-button">
+                    הוספת מדינה
+                </button>
+
+            </div>
+
+        </section>
+
+        <div id="resultsMessage" class="results-message"></div>
+
+        <section id="countriesGrid" class="countries-grid"></section>
+
+    </main>
+
+    <div id="countryPopupOverlay" class="popup-overlay">
+
+        <div class="country-popup">
+
+            <button id="closeCountryPopup" class="popup-close">
+                ✕
+            </button>
+
+            <div class="list-choice-buttons">
+
+                <button id="addVisitedButton"
+                        class="list-choice-button">
+                    כבר ביקרתי
+                </button>
+
+                <button id="addWantToVisitButton"
+                        class="list-choice-button">
+                    בא לי לבקר
+                </button>
+
+            </div>
+
+            <div id="listAddMessage"
+                 class="list-add-message">
+            </div>
+
+            <h2 id="popupCountryName" class="popup-title"></h2>
+
+            <img id="popupCountryFlag"
+                 class="popup-flag"
+                 src=""
+                 alt="דגל המדינה" />
+
+            <div class="details-grid">
+
+                <div class="detail-item">
+                    <strong>קוד:</strong>
+                    <span id="popupCode"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>עיר בירה:</strong>
+                    <span id="popupCapital"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>אזור:</strong>
+                    <span id="popupRegion"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>שטח:</strong>
+                    <span id="popupArea"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>אוכלוסייה:</strong>
+                    <span id="popupPopulation"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>שפות:</strong>
+                    <span id="popupLanguages"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>מטבעות:</strong>
+                    <span id="popupCurrencies"></span>
+                </div>
+
+            </div>
+
+            <div class="popup-actions">
+
+                <button id="openUpdateButton" class="popup-button">
+                    עדכון
+                </button>
+
+                <button id="deleteCountryButton"
+                        class="popup-button delete-button">
+                    מחיקה
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="countryFormOverlay" class="popup-overlay">
+
+        <div class="form-popup">
+
+            <button id="closeCountryForm" class="popup-close">
+                ✕
+            </button>
+
+            <h2 id="formTitle" class="popup-title">
+                הוספת מדינה
+            </h2>
+
+            <form id="countryForm">
+
+                <div class="form-group">
+                    <label for="countryCode">קוד מדינה</label>
+                    <input type="text" id="countryCode" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="countryName">שם המדינה</label>
+                    <input type="text" id="countryName" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="countryCapital">עיר בירה</label>
+                    <input type="text" id="countryCapital" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="countryRegion">אזור</label>
+                    <input type="text" id="countryRegion" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="countryArea">שטח</label>
+                    <input type="number"
+                           id="countryArea"
+                           min="0"
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label for="countryPopulation">אוכלוסייה</label>
+                    <input type="number"
+                           id="countryPopulation"
+                           min="0"
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label for="countryLanguages">
+                        שפות, מופרדות בפסיקים
+                    </label>
+
+                    <input type="text"
+                           id="countryLanguages"
+                           placeholder="English, French" />
+                </div>
+
+                <div class="form-group">
+                    <label for="countryCurrencies">
+                        מטבעות, מופרדים בפסיקים
+                    </label>
+
+                    <input type="text"
+                           id="countryCurrencies"
+                           placeholder="Dollar, Euro" />
+                </div>
+
+                <div class="form-group">
+                    <label for="countryFlag">
+                        קישור לתמונת הדגל
+                    </label>
+
+                    <input type="text"
+                           id="countryFlag"
+                           required />
+                </div>
+
+                <div id="formMessage" class="form-message"></div>
+
+                <button type="submit" class="popup-button">
+                    שמירה
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="../scripts/countries.js"></script>
+
+</body>
+
+</html>

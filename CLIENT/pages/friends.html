@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>החברים שלי</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script src="../scripts/ajaxCalls.js"></script>
+
+    <link href="../CSS/friends.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="top-area">
+
+        <button id="menuButton"
+                class="menu-button"
+                aria-label="פתיחת תפריט">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <div class="page-name">
+            החברים שלי
+        </div>
+
+    </div>
+
+    <div id="menuOverlay"
+         class="menu-overlay">
+    </div>
+
+    <aside id="sideMenu"
+           class="side-menu">
+
+        <div class="menu-header">
+
+            <h2>תפריט</h2>
+
+            <button id="closeMenuButton"
+                    class="close-menu-button">
+                ✕
+            </button>
+
+        </div>
+
+        <nav class="menu-content">
+
+            <a href="index.html"
+               class="menu-link">
+                דף הבית
+            </a>
+
+            <a href="countries.html"
+               class="menu-link">
+                צפייה במדינות
+            </a>
+
+            <a href="myMap.html"
+               class="menu-link">
+                מפת העולם שלי
+            </a>
+
+            <a href="friends.html"
+               class="menu-link">
+                החברים שלי
+            </a>
+
+            <a href="shares.html"
+               class="menu-link">
+                המלצות ושיתופים
+            </a>
+
+            <a href="quizzes.html"
+               class="menu-link">
+                חידונים
+            </a>
+
+            <button id="logoutButton"
+                    class="logout-button">
+                יציאה מהחשבון
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-container">
+
+        <h1 class="main-title">
+            החברים שלי
+        </h1>
+
+        <div class="main-subtitle">
+            הוסיפו חברים וצפו במדינות שבהן הם ביקרו
+        </div>
+
+        <section class="actions-area">
+
+            <button id="openAddFriendButton"
+                    class="main-action-button">
+                הוספת חבר חדש
+            </button>
+
+            <button id="showFriendsButton"
+                    class="main-action-button">
+                הצגת החברים שלי
+            </button>
+
+        </section>
+
+        <section id="friendsArea"
+                 class="friends-area">
+
+            <h2 class="section-title">
+                רשימת החברים שלי
+            </h2>
+
+            <div id="friendsGrid"
+                 class="friends-grid">
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- פופאפ הוספת חבר -->
+
+    <div id="addFriendOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box">
+
+            <button class="popup-close"
+                    data-close="addFriendOverlay">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                הוספת חבר חדש
+            </h2>
+
+            <div class="popup-subtitle">
+                הכניסו את כתובת האימייל של המשתמש שתרצו להוסיף
+            </div>
+
+            <form id="addFriendForm">
+
+                <div class="form-group">
+
+                    <label for="friendEmailInput">
+                        אימייל של החבר
+                    </label>
+
+                    <input type="email"
+                           id="friendEmailInput"
+                           placeholder="friend@example.com"
+                           required />
+
+                </div>
+
+                <div id="addFriendMessage"
+                     class="form-message">
+                </div>
+
+                <button type="submit"
+                        class="popup-action-button">
+                    הוספת חבר
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- פופאפ המדינות של החבר -->
+
+    <div id="friendCountriesOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box large-popup">
+
+            <button class="popup-close"
+                    data-close="friendCountriesOverlay">
+                ✕
+            </button>
+
+            <h2 id="friendCountriesTitle"
+                class="popup-title">
+                המדינות של החבר
+            </h2>
+
+            <div class="popup-subtitle">
+                ניתן ללחוץ על מדינה רק כאשר החבר השאיר עליה שיתוף
+            </div>
+
+            <div id="friendCountriesGrid"
+                 class="countries-grid">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- פופאפ השיתופים -->
+
+    <div id="friendSharesOverlay"
+         class="popup-overlay">
+
+        <div class="popup-box medium-popup">
+
+            <button class="popup-close"
+                    data-close="friendSharesOverlay">
+                ✕
+            </button>
+
+            <h2 id="friendSharesTitle"
+                class="popup-title">
+                השיתופים של החבר
+            </h2>
+
+            <div id="friendSharesList"
+                 class="shares-list">
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../scripts/friends.js"></script>
+
+</body>
+
+</html>

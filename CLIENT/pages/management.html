@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>הרשאות מנהל</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script src="../scripts/ajaxCalls.js"></script>
+    <link href="../CSS/mangement.css" rel="stylesheet" />
+    
+</head>
+
+<body>
+
+    <div class="top-area">
+
+        <button id="menuButton"
+                class="menu-button"
+                aria-label="פתיחת תפריט">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <div class="page-title">
+            הרשאות מנהל
+        </div>
+
+    </div>
+
+    <div id="menuOverlay"
+         class="menu-overlay">
+    </div>
+
+    <aside id="sideMenu"
+           class="side-menu">
+
+        <div class="menu-header">
+
+            <h2>תפריט</h2>
+
+            <button id="closeMenuButton"
+                    class="close-menu-button"
+                    aria-label="סגירת תפריט">
+                ✕
+            </button>
+
+        </div>
+
+        <nav class="menu-content">
+
+            <a href="index.html"
+               class="menu-link">
+                דף הבית
+            </a>
+
+            <a href="countries.html"
+               class="menu-link">
+                צפייה במדינות
+            </a>
+
+            <a href="myMap.html"
+               class="menu-link">
+                מפת העולם שלי
+            </a>
+
+            <a href="shares.html"
+               class="menu-link">
+                המלצות ושיתופים
+            </a>
+
+            <a href="quizzes.html"
+               class="menu-link">
+                חידונים
+            </a>
+
+            <button id="logoutButton"
+                    class="logout-button">
+                יציאה מהחשבון
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-container">
+
+        <h1 id="adminWelcome"
+            class="admin-welcome">
+        </h1>
+
+        <section class="admin-buttons">
+
+            <a href="manageUsers.html"
+               class="admin-main-button">
+                ניהול משתמשים
+            </a>
+
+            <a href="siteData.html"
+               class="admin-main-button">
+                צפייה בנתונים
+            </a>
+
+        </section>
+
+        <button id="openGamesButton"
+                class="games-button">
+            צפייה במשחקים
+        </button>
+
+    </main>
+
+    <div id="gamesOverlay"
+         class="popup-overlay">
+
+        <div class="games-popup">
+
+            <button id="closeGamesPopup"
+                    class="popup-close">
+                ✕
+            </button>
+
+            <h2 class="popup-title">
+                מובילי המשחקים
+            </h2>
+
+            <div id="leadersContainer"
+                 class="leaders-container">
+
+                <div class="loading-message">
+                    טוען את נתוני המשחקים...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../scripts/management.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>מפת העולם שלי</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+    <script src="../scripts/ajaxCalls.js"></script>
+
+    <link href="../CSS/myMap.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="top-area">
+
+        <button id="menuButton"
+                class="menu-button"
+                aria-label="פתיחת תפריט">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <div class="page-title">
+            מפת העולם שלי
+        </div>
+
+    </div>
+
+    <div id="menuOverlay" class="menu-overlay"></div>
+
+    <aside id="sideMenu" class="side-menu">
+
+        <div class="menu-header">
+
+            <h2>תפריט</h2>
+
+            <button id="closeMenuButton"
+                    class="close-menu-button"
+                    aria-label="סגירת תפריט">
+                ✕
+            </button>
+
+        </div>
+
+        <nav class="menu-content">
+
+            <a href="index.html" class="menu-link">
+                דף הבית
+            </a>
+
+            <a href="countries.html" class="menu-link">
+                צפייה במדינות
+            </a>
+
+            <a href="myMap.html" class="menu-link">
+                מפת העולם שלי
+            </a>
+
+            <a href="shares.html" class="menu-link">
+                המלצות ושיתופים
+            </a>
+
+            <a href="quizzes.html" class="menu-link">
+                חידונים
+            </a>
+
+            <div id="adminMenu" class="admin-menu">
+
+                <a href="manageUsers.html" class="menu-link">
+                    ניהול משתמשים
+                </a>
+
+                <a href="siteData.html" class="menu-link">
+                    צפייה בנתונים
+                </a>
+
+            </div>
+
+            <button id="logoutButton" class="logout-button">
+                יציאה מהחשבון
+            </button>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-container">
+
+        <h1 class="main-title">
+            המדינות שלי
+        </h1>
+
+        <section class="lists-container">
+
+            <div id="visitedList"
+                 class="country-list">
+
+                <div class="list-header">
+
+                    <h2>כבר ביקרתי</h2>
+
+                    <a href="countries.html"
+                       class="add-list-button">
+                        הוספת מדינה לרשימה
+                    </a>
+
+                </div>
+
+                <div id="visitedCards"
+                     class="cards-container">
+
+                    <div class="loading-message">
+                        טוען מדינות...
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="wantToVisitList"
+                 class="country-list">
+
+                <div class="list-header">
+
+                    <h2>בא לי לבקר</h2>
+
+                    <a href="countries.html"
+                       class="add-list-button">
+                        הוספת מדינה לרשימה
+                    </a>
+
+                </div>
+
+                <div id="wantToVisitCards"
+                     class="cards-container">
+
+                    <div class="loading-message">
+                        טוען מדינות...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div id="trashArea" class="trash-area">
+
+            <div class="trash-icon">
+                🗑
+            </div>
+
+            <div>
+                גררו לכאן כדי למחוק
+            </div>
+
+        </div>
+
+        <div id="pageMessage"
+             class="page-message">
+        </div>
+
+    </main>
+
+    <div id="countryPopupOverlay"
+         class="popup-overlay">
+
+        <div class="country-popup">
+
+            <button id="closeCountryPopup"
+                    class="popup-close">
+                ✕
+            </button>
+
+            <h2 id="popupCountryName"
+                class="popup-title">
+            </h2>
+
+            <img id="popupCountryFlag"
+                 class="popup-flag"
+                 src=""
+                 alt="דגל המדינה" />
+
+            <div class="details-grid">
+
+                <div class="detail-item">
+                    <strong>קוד:</strong>
+                    <span id="popupCode"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>עיר בירה:</strong>
+                    <span id="popupCapital"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>אזור:</strong>
+                    <span id="popupRegion"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>שטח:</strong>
+                    <span id="popupArea"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>אוכלוסייה:</strong>
+                    <span id="popupPopulation"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>שפות:</strong>
+                    <span id="popupLanguages"></span>
+                </div>
+
+                <div class="detail-item">
+                    <strong>מטבעות:</strong>
+                    <span id="popupCurrencies"></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="../scripts/maMap.js"></script>
+    
+
+</body>
+
+</html>
